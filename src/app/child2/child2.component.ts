@@ -12,7 +12,6 @@ export class Child2Component implements OnInit {
   constructor() { }
 
   ngOnInit() {
-
   }
 
 }
