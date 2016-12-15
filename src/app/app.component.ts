@@ -46,7 +46,6 @@ export class AppComponent extends OnInit {
     // this.data[1] = 'item2';
     this.myData.myKey[1] = this.randomString(5, null);
     this.myData.key2 = this.randomString(5, null);
-
   }
 
   onClickRemoveItem() {
