@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ViewChild } from "@angular/core/src/metadata/di";
 import { Child1Component } from "./child1/child1.component";
+import { Http } from '@angular/http';
 
 
 @Component({
@@ -16,11 +17,15 @@ export class AppComponent extends OnInit {
 
   private myData: any;
 
-  constructor() {
+  constructor(private http: Http) {
     super();
+    this.myData = {
+      'myKey': ['', ''],
+      'key2': ''
+    };
   }
 
-  ngOnInit() {
+  setDataWithTimeout() {
     setTimeout(() => {
       // This should also change the input to child2
       this.myData = {
@@ -32,8 +37,22 @@ export class AppComponent extends OnInit {
       // if (this.child1) {
       //   this.child1.data = this.myData;
       // }
-    },
-      500);
+    }, 500);
+  }
+
+  setDataWithRestCall() {
+
+    this.http.get('http://ip.jsontest.com')
+      // .map((res) => res.json().data)
+      .subscribe((data) => {
+        let resp = data.json();
+        this.myData.myKey = ['hello', 'world'];
+        this.myData.key2 = resp.ip;
+      });
+  }
+
+  ngOnInit() {
+    this.setDataWithRestCall();
   }
 
   onClickChangeData() {
