@@ -2,6 +2,12 @@
   Child2
 </p>
 
-<li *ngFor="let item of data">
-  {{ item }}
-</li>
+<div *ngIf="data">
+  <p>{{data.key2}}</p>
+  <li *ngFor="let item of data.myKey">
+    {{ item }}
+  </li>
+</div>
+
+
+<app-child3 [child3Input]="data"></app-child3>
